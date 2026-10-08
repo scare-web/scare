@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scare 😈</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #050505;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.box {
+    width: 90%;
+    max-width: 500px;
+    padding: 35px 20px;
+    border: 2px solid #333;
+    border-radius: 20px;
+    background: #111;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+p {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+button {
+    background: #d40000;
+    color: white;
+    border: none;
+    padding: 18px 35px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#scare {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+}
+
+#scare h2 {
+    font-size: 55px;
+}
+
+#scare p {
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="normal">
+    <h1>😈 Scare Test</h1>
+    <p>กดปุ่มด้านล่างถ้ากล้า...</p>
+
+    <button onclick="scare()">กดตรงนี้</button>
+</div>
+
+<div id="scare">
+    <h2>😱 SCARY!</h2>
+    <p>คุณโดนหลอกแล้ว 😂</p>
+</div>
+
+<script>
+let เสียง = null;
+
+function scare() {
+
+    if (เสียง) {
+        เสียง.pause();
+        เสียง.currentTime = 0;
+    }
+
+    เสียง = new Audio("scare.mp3");
+
+    เสียง.play().catch(error => {
+        console.log("เปิดเสียงไม่ได้:", error);
+    });
+
+    document.getElementById("normal").style.display = "none";
+    document.getElementById("scare").style.display = "flex";
+}
+</script>
+
+</body>
+</html>
